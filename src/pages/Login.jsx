@@ -1,3 +1,4 @@
+// src/pages/Login.jsx
 import { useState } from "react";
 import { AuthAPI } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
@@ -19,11 +20,18 @@ export default function Login() {
 
         try {
             const res = await AuthAPI.login(form);
-            const { token } = res.data;
+            const { token, customerId, userId, role } = res.data;
 
+            // Store credentials securely
             localStorage.setItem("authToken", token);
+            localStorage.setItem("customerId", customerId);
+            localStorage.setItem("userId", userId);
+            localStorage.setItem("role", role);
+
+            // ✅ Redirect to dashboard
             navigate("/dashboard");
         } catch (err) {
+            console.error("Login failed:", err);
             setError(
                 err.response?.data?.message || "Invalid credentials. Please try again."
             );

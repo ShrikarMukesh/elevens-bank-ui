@@ -1,19 +1,14 @@
-import "./App.css";
+// src/App.jsx
+import AppRoutes from "./routes/AppRoutes";
+import AuthProvider from "./context/AuthContext"; // ✅ no curly braces
+import { BrowserRouter } from "react-router-dom";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-
-function App() {
+export default function App() {
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-            </Routes>
-        </Router>
+        <AuthProvider>
+            <BrowserRouter>
+                <AppRoutes />
+            </BrowserRouter>
+        </AuthProvider>
     );
 }
-
-export default App;
-
