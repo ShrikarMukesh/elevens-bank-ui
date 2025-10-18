@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 export default function App() {
     return (
         <AuthProvider>
-            <BrowserRouter>
+            <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
                 <AppRoutes />
             </BrowserRouter>
         </AuthProvider>

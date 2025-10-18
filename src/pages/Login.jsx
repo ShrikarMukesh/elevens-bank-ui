@@ -1,7 +1,7 @@
 // src/pages/Login.jsx
 import { useState } from "react";
 import { AuthAPI } from "../api/authApi";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -20,13 +20,18 @@ export default function Login() {
 
         try {
             const res = await AuthAPI.login(form);
-            const { token, customerId, userId, role } = res.data;
+            const { accessToken, refreshToken, user } = res.data;
 
-            // Store credentials securely
-            localStorage.setItem("authToken", token);
-            localStorage.setItem("customerId", customerId);
-            localStorage.setItem("userId", userId);
-            localStorage.setItem("role", role);
+            if (!accessToken || !user) {
+                throw new Error("Invalid response from server");
+            }
+
+            // ✅ Store session data securely
+            localStorage.setItem("authToken", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+            localStorage.setItem("userId", user.userId);
+            localStorage.setItem("username", user.username);
+            localStorage.setItem("role", user.role);
 
             // ✅ Redirect to dashboard
             navigate("/dashboard");
@@ -84,9 +89,9 @@ export default function Login() {
 
                 <p className="text-sm mt-4 text-center text-gray-500">
                     Don’t have an account?{" "}
-                    <a href="/register" className="text-blue-600 font-medium">
+                    <Link to="/register" className="text-blue-600 font-medium">
                         Register
-                    </a>
+                    </Link>
                 </p>
             </form>
         </div>

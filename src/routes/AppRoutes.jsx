@@ -1,8 +1,8 @@
-// src/routes/AppRoutes.jsx
 import { Routes, Route } from "react-router-dom";
 import PrivateRoute from "../components/PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import Accounts from "../pages/Accounts";
 import Transactions from "../pages/Transactions";
@@ -14,8 +14,10 @@ export default function AppRoutes() {
     return (
         <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
             <Route
-                path="/"
+                path="/dashboard"
                 element={
                     <PrivateRoute>
                         <DashboardLayout>
@@ -24,6 +26,7 @@ export default function AppRoutes() {
                     </PrivateRoute>
                 }
             />
+
             <Route
                 path="/accounts"
                 element={
@@ -34,6 +37,7 @@ export default function AppRoutes() {
                     </PrivateRoute>
                 }
             />
+
             <Route
                 path="/transactions"
                 element={
@@ -44,6 +48,7 @@ export default function AppRoutes() {
                     </PrivateRoute>
                 }
             />
+
             <Route
                 path="/loans"
                 element={
@@ -54,6 +59,7 @@ export default function AppRoutes() {
                     </PrivateRoute>
                 }
             />
+
             <Route
                 path="/notifications"
                 element={
@@ -64,6 +70,7 @@ export default function AppRoutes() {
                     </PrivateRoute>
                 }
             />
+
             <Route
                 path="/profile"
                 element={

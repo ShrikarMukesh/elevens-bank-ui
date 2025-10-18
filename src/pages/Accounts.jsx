@@ -11,6 +11,7 @@ export default function Accounts() {
         const fetchAccounts = async () => {
             try {
                 const customerId = user?.customerId || "CUST12345";
+                console.log("Fetching accounts for customer:", customerId);
                 const data = await getAccountsByCustomer(customerId);
                 setAccounts(data);
             } catch (err) {
