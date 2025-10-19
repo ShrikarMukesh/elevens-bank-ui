@@ -1,17 +1,32 @@
-// src/components/Sidebar.jsx
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
+    const linkClass = ({ isActive }) =>
+        `block px-4 py-2 rounded-md transition-colors duration-200 
+     ${isActive ? "bg-blue-600 text-white" : "text-gray-700 hover:bg-blue-100 hover:text-blue-700"}`;
+
     return (
         <aside className="w-64 bg-white shadow-lg p-4">
             <h2 className="text-lg font-bold mb-6">🏦 Elevens Bank</h2>
-            <nav className="space-y-3">
-                <Link to="/dashboard" className="block hover:text-blue-600">Dashboard</Link>
-                <Link to="/accounts" className="block hover:text-blue-600">Accounts</Link>
-                <Link to="/transactions" className="block hover:text-blue-600">Transactions</Link>
-                <Link to="/loans" className="block hover:text-blue-600">Loans</Link>
-                <Link to="/notifications" className="block hover:text-blue-600">Notifications</Link>
-                <Link to="/profile" className="block hover:text-blue-600">Profile</Link>
+            <nav className="space-y-2">
+                <NavLink to="/dashboard" className={linkClass}>
+                    Dashboard
+                </NavLink>
+                <NavLink to="/accounts" className={linkClass}>
+                    Accounts
+                </NavLink>
+                <NavLink to="/transactions" className={linkClass}>
+                    Transactions
+                </NavLink>
+                <NavLink to="/loans" className={linkClass}>
+                    Loans
+                </NavLink>
+                <NavLink to="/notifications" className={linkClass}>
+                    Notifications
+                </NavLink>
+                <NavLink to="/profile" className={linkClass}>
+                    Profile
+                </NavLink>
             </nav>
         </aside>
     );

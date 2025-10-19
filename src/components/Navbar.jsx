@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import useAuth from "../hooks/useAuth"; // ✅ fixed import
 
 export default function Navbar() {

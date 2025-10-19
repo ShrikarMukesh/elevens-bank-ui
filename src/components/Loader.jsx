@@ -1,4 +1,4 @@
-// src/components/Loader.jsx
+
 export default function Loader() {
     return (
         <div className="flex justify-center items-center min-h-[50vh]">

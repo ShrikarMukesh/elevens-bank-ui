@@ -13,74 +13,27 @@ import Profile from "../pages/Profile";
 export default function AppRoutes() {
     return (
         <Routes>
+            {/* Public routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
+            {/* Protected layout and pages */}
             <Route
-                path="/dashboard"
+                path="/"
                 element={
                     <PrivateRoute>
-                        <DashboardLayout>
-                            <Dashboard />
-                        </DashboardLayout>
+                        <DashboardLayout />
                     </PrivateRoute>
                 }
-            />
-
-            <Route
-                path="/accounts"
-                element={
-                    <PrivateRoute>
-                        <DashboardLayout>
-                            <Accounts />
-                        </DashboardLayout>
-                    </PrivateRoute>
-                }
-            />
-
-            <Route
-                path="/transactions"
-                element={
-                    <PrivateRoute>
-                        <DashboardLayout>
-                            <Transactions />
-                        </DashboardLayout>
-                    </PrivateRoute>
-                }
-            />
-
-            <Route
-                path="/loans"
-                element={
-                    <PrivateRoute>
-                        <DashboardLayout>
-                            <Loans />
-                        </DashboardLayout>
-                    </PrivateRoute>
-                }
-            />
-
-            <Route
-                path="/notifications"
-                element={
-                    <PrivateRoute>
-                        <DashboardLayout>
-                            <Notifications />
-                        </DashboardLayout>
-                    </PrivateRoute>
-                }
-            />
-
-            <Route
-                path="/profile"
-                element={
-                    <PrivateRoute>
-                        <DashboardLayout>
-                            <Profile />
-                        </DashboardLayout>
-                    </PrivateRoute>
-                }
-            />
+            >
+                {/* These are nested routes rendered inside DashboardLayout’s <Outlet /> */}
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="accounts" element={<Accounts />} />
+                <Route path="transactions" element={<Transactions />} />
+                <Route path="loans" element={<Loans />} />
+                <Route path="notifications" element={<Notifications />} />
+                <Route path="profile" element={<Profile />} />
+            </Route>
         </Routes>
     );
 }
