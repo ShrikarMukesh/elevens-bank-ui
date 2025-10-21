@@ -17,6 +17,10 @@ export const transactionApi = axios.create({
     baseURL: process.env.REACT_APP_TRANSACTION_API || "http://localhost:4001",
 });
 
+export const notificationApi = axios.create({
+    baseURL: process.env.REACT_APP_NOTIFICATION_API || "http://localhost:5001",
+});
+
 // 🔐 Attach JWT token to each request
 const attachToken = (config) => {
     const token = localStorage.getItem("authToken");

@@ -1,4 +1,3 @@
-// src/api/accountService.js
 import { accountApi } from "./axios";
 
 export const getAccountsByCustomer = async (customerId) => {
