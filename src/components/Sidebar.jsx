@@ -18,14 +18,17 @@ export default function Sidebar() {
                 <NavLink to="/transactions" className={linkClass}>
                     Transactions
                 </NavLink>
-                <NavLink to="/loans" className={linkClass}>
-                    Loans
+                <NavLink to="/profile" className={linkClass}>
+                    Profile
+                </NavLink>
+                <NavLink to="/cards" className={linkClass}>
+                    Cards
                 </NavLink>
                 <NavLink to="/notifications" className={linkClass}>
                     Notifications
                 </NavLink>
-                <NavLink to="/profile" className={linkClass}>
-                    Profile
+                <NavLink to="/loans" className={linkClass}>
+                    Loans
                 </NavLink>
             </nav>
         </aside>

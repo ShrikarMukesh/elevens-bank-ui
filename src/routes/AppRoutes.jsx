@@ -9,6 +9,7 @@ import Transactions from "../pages/Transactions";
 import Loans from "../pages/Loans";
 import Notifications from "../pages/Notifications";
 import Profile from "../pages/Profile";
+import Cards from "../pages/Cards"
 
 export default function AppRoutes() {
     return (
@@ -33,6 +34,7 @@ export default function AppRoutes() {
                 <Route path="loans" element={<Loans />} />
                 <Route path="notifications" element={<Notifications />} />
                 <Route path="profile" element={<Profile />} />
+                <Route path="cards" element={<Cards />} />
             </Route>
         </Routes>
     );

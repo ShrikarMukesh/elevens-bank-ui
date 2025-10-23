@@ -1,8 +1,24 @@
+import {
+    DashboardHeader,
+    DashboardTabs,
+    AccountCards,
+    FavouriteLinks,
+    SendMoneyForm,
+} from "../pages/dashboard";
+
 export default function Dashboard() {
     return (
-        <div>
-            <h2 className="text-2xl font-semibold mb-4">Welcome back!</h2>
-            <p>Your account overview will appear here.</p>
+        <div className="space-y-6">
+            <DashboardHeader />
+            <DashboardTabs />
+
+            <div className="grid grid-cols-3 gap-6 mt-6">
+                <div className="col-span-2 space-y-6">
+                    <AccountCards />
+                    <SendMoneyForm />
+                </div>
+                <FavouriteLinks />
+            </div>
         </div>
     );
 }
