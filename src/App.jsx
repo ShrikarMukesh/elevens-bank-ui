@@ -1,14 +1,13 @@
-// src/App.jsx
 import AppRoutes from "./routes/AppRoutes";
-import AuthProvider from "./context/AuthContext"; // ✅ no curly braces
+import AuthProvider from "./context/AuthContext";
 import { BrowserRouter } from "react-router-dom";
 
 export default function App() {
     return (
-        <AuthProvider>
-            <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
+        <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
+            <AuthProvider>
                 <AppRoutes />
-            </BrowserRouter>
-        </AuthProvider>
+            </AuthProvider>
+        </BrowserRouter>
     );
 }

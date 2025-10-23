@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { AuthAPI } from "../api/authApi";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 export default function Login() {
     const navigate = useNavigate();
+    const { setToken, setUser } = useAuth(); // ✅ from AuthContext
 
     const [form, setForm] = useState({ username: "", password: "" });
     const [error, setError] = useState("");
@@ -20,19 +22,23 @@ export default function Login() {
         try {
             const res = await AuthAPI.login(form);
             const { accessToken, refreshToken, user } = res.data;
+            console.log('Access token', accessToken);
 
             if (!accessToken || !user) {
                 throw new Error("Invalid response from server");
             }
 
-            // ✅ Store session data securely
-            localStorage.setItem("authToken", accessToken);
+            // ✅ Store in context
+            setToken(accessToken);
+            setUser(user);
+
+            // ✅ Also persist in localStorage for session restore
             localStorage.setItem("refreshToken", refreshToken);
             localStorage.setItem("userId", user.userId);
             localStorage.setItem("username", user.username);
             localStorage.setItem("role", user.role);
 
-            // ✅ Redirect to dashboard
+            // ✅ Navigate to dashboard
             navigate("/dashboard");
         } catch (err) {
             console.error("Login failed:", err);

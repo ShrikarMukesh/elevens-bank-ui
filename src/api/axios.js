@@ -9,16 +9,16 @@ export const customerApi = axios.create({
     baseURL: process.env.REACT_APP_CUSTOMER_API || "http://localhost:6001",
 });
 
-export const accountApi = axios.create({
-    baseURL: process.env.REACT_APP_ACCOUNT_API || "http://localhost:3001",
+export const notificationApi = axios.create({
+    baseURL: process.env.REACT_APP_NOTIFICATION_API || "http://localhost:5001",
 });
 
 export const transactionApi = axios.create({
     baseURL: process.env.REACT_APP_TRANSACTION_API || "http://localhost:4001",
 });
 
-export const notificationApi = axios.create({
-    baseURL: process.env.REACT_APP_NOTIFICATION_API || "http://localhost:5001",
+export const accountApi = axios.create({
+    baseURL: process.env.REACT_APP_ACCOUNT_API || "http://localhost:3001",
 });
 
 // 🔐 Attach JWT token to each request
