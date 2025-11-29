@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import { getAccountsByCustomer } from "../../api/accountService";
 import AccountCard from "./AccountCard";
 
@@ -6,8 +7,8 @@ export default function AccountCards() {
     const [showBalance, setShowBalance] = useState(false);
     const [accounts, setAccounts] = useState([]);
 
-    // You’ll later get this dynamically from AuthContext
-    const customerId = "CUST12345";
+    const { user } = useAuth();
+    const customerId = user?.userId || localStorage.getItem("userId");
 
     useEffect(() => {
         const fetchAccounts = async () => {
