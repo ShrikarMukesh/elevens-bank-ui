@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  elevens-bank-ui:
+    build: .
+    ports:
+      - "3000:80"
+    volumes:
+      - ./src:/app/src # Optional: for hot reloading if running in dev mode
+    environment:
+      - REACT_APP_AUTH_API=http://host.docker.internal:7001
+      - REACT_APP_CUSTOMER_API=http://host.docker.internal:6001
+      - REACT_APP_NOTIFICATION_API=http://host.docker.internal:5001
+      - REACT_APP_TRANSACTION_API=http://host.docker.internal:4001
+      - REACT_APP_ACCOUNT_API=http://host.docker.internal:3001
+      - REACT_APP_CARDS_API=http://host.docker.internal:8001
+      - REACT_APP_LOANS_API=http://host.docker.internal:9001
+    container_name: elevens-bank-ui
+    restart: always
