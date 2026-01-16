@@ -21,6 +21,14 @@ export const accountApi = axios.create({
     baseURL: process.env.REACT_APP_ACCOUNT_API || "http://localhost:3001",
 });
 
+export const cardsApi = axios.create({
+    baseURL: process.env.REACT_APP_CARDS_API || "http://localhost:8001",
+});
+
+export const loansApi = axios.create({
+    baseURL: process.env.REACT_APP_LOANS_API || "http://localhost:9001",
+});
+
 // 🔐 Attach JWT token to each request
 const attachToken = (config) => {
     const token = localStorage.getItem("authToken");
@@ -81,7 +89,7 @@ const handleError = async (error) => {
 };
 
 // ✅ Register interceptors
-[authApi, customerApi, accountApi, transactionApi].forEach((instance) => {
+[authApi, customerApi, accountApi, transactionApi, notificationApi, cardsApi, loansApi].forEach((instance) => {
     instance.interceptors.request.use(attachToken);
     instance.interceptors.response.use((res) => res, handleError);
 });
