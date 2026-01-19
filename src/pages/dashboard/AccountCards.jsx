@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth";
 import { getAccountsByCustomer } from "../../api/accountService";
 import AccountCard from "./AccountCard";
 
-export default function AccountCards() {
+export default function AccountCards({ customerId }) {
     const [showBalance, setShowBalance] = useState(false);
     const [accounts, setAccounts] = useState([]);
-
-    const { user } = useAuth();
-    const customerId = user?.userId || localStorage.getItem("userId");
 
     useEffect(() => {
         const fetchAccounts = async () => {

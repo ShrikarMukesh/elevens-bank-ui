@@ -7,7 +7,20 @@ export const getCustomerById = async (customerId) => {
         const response = await customerApi.get(`/api/customers/${customerId}`);
         return response.data;
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error("❌ Error fetching customer by ID:", error);
+        throw error;
+    }
+};
+
+// ✅ Get customer by userId
+export const getCustomerByUserId = async (userId) => {
+    try {
+        const response = await customerApi.get(`/api/customers/user/${userId}`);
+        return response.data;
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error("❌ Error fetching customer by User ID:", error);
         throw error;
     }
 };
@@ -18,6 +31,7 @@ export const updateCustomer = async (customerId, updatedData) => {
         const response = await customerApi.put(`/api/customers/${customerId}`, updatedData);
         return response.data;
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error("❌ Error updating customer:", error);
         throw error;
     }
@@ -29,6 +43,7 @@ export const getAllCustomers = async () => {
         const response = await customerApi.get("/api/customers");
         return response.data;
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error("❌ Error fetching customers:", error);
         throw error;
     }
@@ -40,6 +55,7 @@ export const deleteCustomer = async (customerId) => {
         const response = await customerApi.delete(`/api/customers/${customerId}`);
         return response.data;
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error("❌ Error deleting customer:", error);
         throw error;
     }
@@ -51,6 +67,7 @@ export const verifyCustomerKYC = async (customerId) => {
         const response = await customerApi.put(`/api/customers/${customerId}/kyc/verify`);
         return response.data;
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error("❌ Error verifying customer KYC:", error);
         throw error;
     }

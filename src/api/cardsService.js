@@ -2,7 +2,7 @@ import { cardsApi } from "./axios";
 
 export const CardsService = {
     // Get all cards for the authenticated user
-    getMyCards: () => cardsApi.get("/my"),
+    getMyCards: (customerId) => cardsApi.get(`/cards/customer/${customerId}`),
 
     // Apply for a new card
     applyForCard: (cardData) => cardsApi.post("/create", cardData),

@@ -1,21 +1,25 @@
 // src/pages/Profile.jsx
 import { useEffect, useState } from "react";
-import {getCustomerById, verifyCustomerKYC} from "../api/customerService";
+import {getCustomerByUserId, verifyCustomerKYC} from "../api/customerService";
+import useAuth from "../hooks/useAuth";
 
 export default function Profile() {
     const [customer, setCustomer] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const { user } = useAuth();
     // ✅ Replace this with dynamic value (from auth context or localStorage)
-    const customerId = "CUST12345";
+    const customerId = user?.userId || localStorage.getItem("userId");
 
     useEffect(() => {
         async function fetchCustomer() {
             try {
-                const data = await getCustomerById(customerId);
+                // Fetch using userId since we don't have customerId yet
+                const data = await getCustomerByUserId(customerId); // customerId var holds userId here
                 setCustomer(data);
             } catch (err) {
+                // eslint-disable-next-line no-console
                 console.error("Failed to fetch customer:", err);
                 setError("Unable to load customer data");
             } finally {

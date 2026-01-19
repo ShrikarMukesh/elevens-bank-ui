@@ -22,11 +22,11 @@ export const accountApi = axios.create({
 });
 
 export const cardsApi = axios.create({
-    baseURL: process.env.REACT_APP_CARDS_API || "http://localhost:8001",
+    baseURL: process.env.REACT_APP_CARDS_API || "http://localhost:2001",
 });
 
 export const loansApi = axios.create({
-    baseURL: process.env.REACT_APP_LOANS_API || "http://localhost:9001",
+    baseURL: process.env.REACT_APP_LOANS_API || "http://localhost:8001",
 });
 
 // 🔐 Attach JWT token to each request

@@ -31,10 +31,10 @@ export default function AppRoutes() {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="accounts" element={<Accounts />} />
                 <Route path="transactions" element={<Transactions />} />
-                <Route path="loans" element={<Loans />} />
+                <Route path="cards/*" element={<Cards />} />
+                <Route path="loans/*" element={<Loans />} />
                 <Route path="notifications" element={<Notifications />} />
                 <Route path="profile" element={<Profile />} />
-                <Route path="cards" element={<Cards />} />
             </Route>
         </Routes>
     );
