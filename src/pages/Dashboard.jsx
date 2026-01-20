@@ -25,6 +25,7 @@ export default function Dashboard() {
                 const profile = await getCustomerByUserId(user.userId);
                 setCustomerId(profile.customerId);
             } catch (error) {
+                // eslint-disable-next-line no-console
                 console.error("Failed to fetch customer profile for dashboard:", error);
             } finally {
                 setLoading(false);

@@ -12,6 +12,7 @@ export default function AccountCards({ customerId }) {
                 const data = await getAccountsByCustomer(customerId);
                 setAccounts(data);
             } catch (err) {
+                // eslint-disable-next-line no-console
                 console.error("Failed to load accounts:", err);
             }
         };

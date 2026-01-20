@@ -1,30 +1,37 @@
 import { useEffect, useState } from "react";
 import { getAccountsByCustomer } from "../api/accountService";
-import useAuth from "../hooks/useAuth"; // ✅ fixed import
+import useCustomer from "../hooks/useCustomer";
 
 export default function Accounts() {
-    const { user } = useAuth();
+    const { customerId, loading: customerLoading } = useCustomer();
     const [accounts, setAccounts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [accountsLoading, setAccountsLoading] = useState(false);
 
     useEffect(() => {
         const fetchAccounts = async () => {
+            if (!customerId) return;
+            
+            setAccountsLoading(true);
             try {
-                const customerId = user?.customerId || "CUST12345";
+                // Fetch accounts using the dynamic customerId
+                // eslint-disable-next-line no-console
                 console.log("Fetching accounts for customer:", customerId);
                 const data = await getAccountsByCustomer(customerId);
                 setAccounts(data);
             } catch (err) {
+                // eslint-disable-next-line no-console
                 console.error("Error fetching accounts:", err);
             } finally {
-                setLoading(false);
+                setAccountsLoading(false);
             }
         };
 
         fetchAccounts();
-    }, [user]);
+    }, [customerId]);
 
-    if (loading) {
+    const isLoading = customerLoading || accountsLoading;
+
+    if (isLoading) {
         return <div className="p-6 text-gray-500">Loading accounts...</div>;
     }
 

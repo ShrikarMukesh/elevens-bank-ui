@@ -74,6 +74,7 @@ export default function Register() {
             setSuccess(true);
             setTimeout(() => navigate("/dashboard"), 1200);
         } catch (err) {
+            // eslint-disable-next-line no-console
             console.error("Registration failed:", err);
             const backendMessage =
                 err.response?.data?.message?.toLowerCase() || "";

@@ -1,9 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
-    const linkClass = ({ isActive }) =>
-        `block px-4 py-2 rounded-md transition-colors duration-200 
-     ${isActive ? "bg-blue-600 text-white" : "text-gray-700 hover:bg-blue-100 hover:text-blue-700"}`;
+
 
     return (
         <aside className="w-64 bg-white shadow-lg p-4" aria-label="Sidebar Navigation">

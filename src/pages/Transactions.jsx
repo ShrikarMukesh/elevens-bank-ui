@@ -16,6 +16,7 @@ export default function Transactions() {
                 const data = await getTransactionsByAccount(accountId);
                 setTransactions(data);
             } catch (error) {
+                // eslint-disable-next-line no-console
                 console.error("Error fetching transactions:", error);
             } finally {
                 setLoading(false);

@@ -5,6 +5,7 @@ export const getAccountsByCustomer = async (customerId) => {
         const response = await accountApi.get(`/api/accounts/customer/${customerId}`);
         return response.data; // expecting an array of accounts
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error("Error fetching accounts:", error);
         throw error;
     }
@@ -20,6 +21,7 @@ export const getAccountById = async (accountId) => {
         const response = await accountApi.get(`/api/accounts/${accountId}`);
         return response.data; // expecting an array of accounts
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error("Error fetching accounts:", error);
         throw error;
     }

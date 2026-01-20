@@ -17,6 +17,7 @@ export default function SendMoneyForm() {
                 const data = await getAccountsByCustomer(customerId);
                 setAccounts(data.filter((a) => a.status === "ACTIVE"));
             } catch (err) {
+                // eslint-disable-next-line no-console
                 console.error("Failed to load accounts:", err);
             }
         };
@@ -49,6 +50,7 @@ export default function SendMoneyForm() {
             setFromAccount("");
             setToAccount("");
         } catch (err) {
+            // eslint-disable-next-line no-console
             console.error(err);
             setMessage("❌ Transfer failed. Please check balance or try again.");
         } finally {

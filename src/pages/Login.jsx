@@ -22,6 +22,7 @@ export default function Login() {
         try {
             const res = await AuthAPI.login(form);
             const { accessToken, refreshToken, user } = res.data;
+            // eslint-disable-next-line no-console
             console.log('Access token', accessToken);
 
             if (!accessToken || !user) {
@@ -41,6 +42,7 @@ export default function Login() {
             // ✅ Navigate to dashboard
             navigate("/dashboard");
         } catch (err) {
+            // eslint-disable-next-line no-console
             console.error("Login failed:", err);
             setError(
                 err.response?.data?.message || "Invalid credentials. Please try again."

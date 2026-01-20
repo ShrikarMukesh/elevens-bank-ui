@@ -10,6 +10,7 @@ const axiosClient = axios.create({
 axiosClient.interceptors.response.use(
     (response) => response,
     (error) => {
+        // eslint-disable-next-line no-console
         console.error("API Error:", error.response || error.message);
         return Promise.reject(error);
     }

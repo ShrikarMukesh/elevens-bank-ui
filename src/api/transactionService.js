@@ -5,6 +5,7 @@ export const getTransactionsByAccount = async (accountId) => {
         const response = await transactionApi.get(`/api/transactions/account/${accountId}`);
         return response.data;
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error("❌ Error fetching transactions:", error);
         throw error;
     }
