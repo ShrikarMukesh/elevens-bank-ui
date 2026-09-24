@@ -9,7 +9,7 @@ export const AuthAPI = {
         const refreshToken = localStorage.getItem("refreshToken");
         if (!refreshToken) throw new Error("No refresh token available");
 
-        const response = await authApi.post("/auth/refresh", { refreshToken });
+        const response = await authApi.post(`/auth/refresh?refreshToken=${encodeURIComponent(refreshToken)}`);
         return response.data;
     },
     register: (data) => authApi.post("/auth/register", data),

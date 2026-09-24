@@ -5,17 +5,23 @@ export const CardsService = {
     getMyCards: (customerId) => cardsApi.get(`/cards/customer/${customerId}`),
 
     // Apply for a new card
-    applyForCard: (cardData) => cardsApi.post("/create", cardData),
+    applyForCard: (cardData) => cardsApi.post("/cards/create", cardData),
 
     // Get card details
-    getCardDetails: (cardId) => cardsApi.get(`/${cardId}`),
+    getCardDetails: (cardId) => cardsApi.get(`/cards/${cardId}`),
 
-    // Block/Unblock a card
-    toggleCardStatus: (cardId, status) => cardsApi.put(`/${cardId}/status`, { status }),
+    // Block a card
+    blockCard: (cardId) => cardsApi.post(`/cards/${cardId}/block`),
 
-    // Report lost/stolen (might differ based on backend implementation)
-    reportLostCard: (cardId) => cardsApi.post(`/${cardId}/report-lost`),
+    // Update card status (ADMIN only)
+    updateCardStatus: (cardId, status) => cardsApi.post(`/cards/${cardId}/status`, { status }),
 
-    // Set card spending limits
-    setLimits: (cardId, limits) => cardsApi.put(`/${cardId}/limits`, limits)
+    // Activate a card
+    activateCard: (cardId, pin) => cardsApi.post(`/cards/${cardId}/activate`, { pin }),
+
+    // Reset card PIN
+    resetPin: (cardId, oldPin, newPin) => cardsApi.post(`/cards/${cardId}/reset-pin`, { oldPin, newPin }),
+
+    // Reissue a card (ADMIN only)
+    reissueCard: (cardId) => cardsApi.post(`/cards/${cardId}/reissue`),
 };

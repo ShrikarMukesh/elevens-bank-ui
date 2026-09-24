@@ -62,9 +62,9 @@ export const deleteCustomer = async (customerId) => {
 };
 
 // ✅ Verify KYC
-export const verifyCustomerKYC = async (customerId) => {
+export const verifyCustomerKYC = async (customerId, verified = true) => {
     try {
-        const response = await customerApi.put(`/api/customers/${customerId}/kyc/verify`);
+        const response = await customerApi.patch(`/api/customers/${customerId}/kyc?verified=${verified}`);
         return response.data;
     } catch (error) {
         // eslint-disable-next-line no-console

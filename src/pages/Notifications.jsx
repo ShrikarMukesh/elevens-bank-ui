@@ -6,6 +6,8 @@ import {
     markAllNotificationsAsRead,
     deleteNotification,
 } from "../api/noticationService";
+import useAuth from "../hooks/useAuth";
+import { getCustomerByUserId } from "../api/customerService";
 
 export default function Notifications() {
     const [notifications, setNotifications] = useState([]);
@@ -16,10 +18,29 @@ export default function Notifications() {
     const [priorityFilter, setPriorityFilter] = useState("ALL");
     const [eventTypeFilter, setEventTypeFilter] = useState("ALL");
 
-    const customerId = "CUST12345";
+    const { user } = useAuth();
+    const [customerId, setCustomerId] = useState(null);
 
     useEffect(() => {
-        loadNotifications();
+        const fetchCustomerInfo = async () => {
+            if (user?.userId) {
+                try {
+                    const customerData = await getCustomerByUserId(user.userId);
+                    setCustomerId(customerData.customerId);
+                } catch (err) {
+                    console.error("Failed to fetch customer info:", err);
+                    setError("Failed to load customer information.");
+                    setLoading(false);
+                }
+            }
+        };
+        fetchCustomerInfo();
+    }, [user]);
+
+    useEffect(() => {
+        if (customerId) {
+            loadNotifications();
+        }
     }, [customerId]);
 
     async function loadNotifications() {
